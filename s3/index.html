@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- 文字エンコードをUTF-8に指定 -->
+    <meta charset="utf-8">
+    <!-- レンダリングを最新に指定 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 拡大を禁止 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>SNS</title>
+
+    <!-- Semantic UI を読み込む -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css">
+    <!-- Vue.js を読み込む -->
+    <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>
+
+    <!-- 共通のCSSファイルを読み込む -->
+    <link rel="stylesheet" href="./common/style.css">
+    <script src="./common/menu.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <!-- Vue.jsで読み込む -->
+    <div id="app">
+      <common-menu current="home"></common-menu>
+      <div class="ui main container">
+        <!-- 基本的なコンテンツはここに記載する -->
+        <div class="ui segment">
+          <form action="" class="ui form" v-on:submit.prevent="post">
+            <div class="ui field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" placeholder="ID" v-model="post.userId">
+              </div>
+            </div>
+            <textarea class="post-textarea" v-model="post.text"></textarea>
+            <div class="inline field post-inline category-form">
+              <div class="ui right labeled left icon input">
+                <i class="tags icon"></i>
+                <input type="text" placeholder="Enter Categorys" v-model="post.category">
+                <a class="ui tag label">Add Category</a>
+              </div>
+              <button class="ui button green post-button right floated" type="submit">投稿</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="ui segment">
+          <form action="" class="ui form" v-on:submit.prevent="search">
+            <div class="field">
+              <label for="">ユーザー名</label>
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" placeholder="Nickname">
+              </div>
+            </div>
+            <div class="field">
+              <label for="">カテゴリー名</label>
+              <div class="ui left icon input">
+                <i class="tag icon"></i>
+                <input type="text" placeholder="Category">
+              </div>
+            </div>
+            <div class="field">
+              <label for="">投稿日時</label>
+              <div class="inline fields">
+                <div class="field">
+                  <input type="date" class="search-date">
+                  <label for="">から</label>
+                </div>
+                <div class="field">
+                  <input type="date" class="search-date">
+                  <label for="">まで</label>
+                </div>
+              </div>
+            </div>
+            <button class="ui button green post-button fluid">検索</button>
+          </form>
+        </div>
+
+        <div class="ui segments article-body">
+          <div class="ui segment article" v-for="article in articles">
+            <button class="ui button red mini article-delete">削除</button>
+            <div>
+              <h2 class="article-username">{{article.userId}} さん</h2>
+              <div class="center">
+                <p class="article-time">{{article.timestamp|dateformat}}</p>
+                <p class="article-content">{{article.text}}</p>
+                <div class="ui label">{{article.category}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- APIのURLを読み込むJavaScriptファイル -->
+    <script src="./common/config.js" charset="utf-8"></script>
+    <!-- 各ページで使うJavaScriptファイルはこの行より下で読み込む -->
+    <script src="./js/index.js" charset="utf-8"></script>
+  </body>
+</html>

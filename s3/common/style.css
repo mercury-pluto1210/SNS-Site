@@ -1,0 +1,41 @@
+/* 全体で共通のCSSはこのファイルに記述する */
+body{
+  background-color: #DADADA;
+}
+
+.ui.form textarea{
+  resize: none;
+}
+
+.category-form{
+  padding-top: 20px;
+}
+
+.article-body{
+  padding-bottom: 20px;
+}
+
+.article{
+  position: relative;
+}
+
+.article-delete{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.article-username{
+  border-bottom: 1px green solid;
+  display: inline;
+}
+
+.center{
+  padding-top: 20px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.article-category{
+  border-bottom: 1px solid #000;
+}
